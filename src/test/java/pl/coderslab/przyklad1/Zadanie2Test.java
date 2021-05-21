@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class Zadanie2Test {
 
@@ -80,9 +81,16 @@ public class Zadanie2Test {
             company.submit();
 
             //dodatkowo - Znajdź i wybierz role
-            WebElement role = driver.findElement(By.xpath ("//*[@id='role']/option[2]"));
+           // WebElement role = driver.findElement(By.xpath ("//*[@id='role']/option[2]"));
             //WebElement role = driver.findElement(By.cssSelector("#role > option:nth-child(2)"));
-            role.click();
+           // role.click();
+
+            // Prawidłowy wybór wyszukania gdy pole na kilka opcji z otwartą listą !! importujemy select
+            WebElement roleSelectElement = driver.findElement(By.id("role"));
+            Select role = new Select(roleSelectElement);
+            role.selectByVisibleText("Manager");
+
+
             // dodatkowo - znajdz pole w wyborze opcji w oczekiwaniu w pracy - praca w zespole
             WebElement jobExpectation = driver.findElement(By.xpath("//*[@id='expectation']/option[4]"));
             jobExpectation.click();
